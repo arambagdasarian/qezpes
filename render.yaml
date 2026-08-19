@@ -1,0 +1,15 @@
+# One-click Render deploy for the full site (with Stripe checkout):
+# Render dashboard → New + → Blueprint → pick this repo,
+# then set STRIPE_SECRET_KEY when prompted.
+services:
+  - type: web
+    name: qezpes
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: NODE_VERSION
+        value: 22.12.0
