@@ -48,7 +48,7 @@ export default function Story() {
               <img src={asset("/img/hoodie-ser-1.jpg")} alt="The first-drop hoodie «սեր» — a red heart-shaped “love” across the back" loading="lazy" />
             </figure>
             <figure className="story__photo story__photo--b">
-              <img src={asset("/img/valentine-qezkes-1.jpg")} alt="Two people wearing matching Qez Kes tees" loading="lazy" />
+              <img src={asset("/img/iamthelove-back.jpg")} alt="The “I am the love” tee — a heart-shaped print across the back, on a Yerevan street" loading="lazy" />
             </figure>
             <svg className="story__stamp" viewBox="0 0 120 120" aria-hidden="true">
               <defs>

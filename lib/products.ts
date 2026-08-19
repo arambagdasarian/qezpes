@@ -79,8 +79,8 @@ export const PRODUCTS: Product[] = [
     sizes: ["S–M", "L–XL"],
     badge: "Limited drop",
     colorways: [
-      { id: "wine", name: "Wine", hex: "#6e1423", img: "/img/valentine-qezkes-1.jpg" },
-      { id: "ivory", name: "Ivory", hex: "#f5eee3", img: "/img/valentine-qezkes-2.jpg", ringed: true },
+      { id: "wine", name: "Wine", hex: "#6e1423", img: "/img/valentine-qezkes-2.jpg" },
+      { id: "ivory", name: "Ivory", hex: "#f5eee3", img: "/img/valentine-duo-1.jpg", ringed: true },
     ],
   },
   {
