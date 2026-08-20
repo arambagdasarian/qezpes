@@ -15,7 +15,12 @@ export default function Nav() {
           <a href="#story">Story</a>
           <a href="#shop">Shop</a>
           <a href="#kids">Kids</a>
-          <a href="https://www.instagram.com/qezpes/" target="_blank" rel="noreferrer">
+          <a
+            className="nav__ig"
+            href="https://www.instagram.com/qezpes/"
+            target="_blank"
+            rel="noreferrer"
+          >
             Instagram
           </a>
         </nav>

@@ -198,7 +198,19 @@ button {
 
 @media (max-width: 720px) {
   .nav__links {
+    gap: 1.1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+  .nav__links .nav__ig {
     display: none;
+  }
+  .nav__brand {
+    height: 22px;
+  }
+  .nav__cart {
+    padding: 0.5rem 0.95rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -421,6 +433,33 @@ button {
   }
   .reel:nth-child(1) { margin-top: 1rem; }
   .reel:nth-child(3) { margin-top: 2rem; }
+}
+
+/* phones: the triptych becomes a swipeable, edge-bleeding carousel */
+@media (max-width: 720px) {
+  .reels {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.9rem;
+    margin-inline: calc(-1 * (100vw - 92vw) / 2);
+    padding: 0.6rem calc((100vw - 92vw) / 2) 1.4rem;
+    scrollbar-width: none;
+  }
+  .reels::-webkit-scrollbar {
+    display: none;
+  }
+  .reel,
+  .reel:nth-child(1),
+  .reel:nth-child(3) {
+    flex: 0 0 58vw;
+    margin-top: 0;
+    scroll-snap-align: center;
+  }
+  .hero__ctas .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
 }
 
 /* ————— marquee ————— */
@@ -672,6 +711,26 @@ html.js .reveal:not(.is-in) {
   .story__photos {
     min-height: 0;
     height: 420px;
+    max-width: 480px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .story__stamp {
+    width: 88px;
+    height: 88px;
+    right: 2%;
+  }
+  .marquee__item {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart {
+    width: 100vw;
   }
 }
 
@@ -969,6 +1028,34 @@ html.js .reveal:not(.is-in) {
   color: var(--cocoa-soft);
   font-size: 0.85rem;
   margin-top: 0.25rem;
+}
+
+@media (max-width: 720px) {
+  .values {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem 1rem;
+  }
+  .value {
+    padding: 0;
+  }
+  .value__text {
+    font-size: 0.8rem;
+  }
+}
+
+/* touch devices get comfortable tap targets */
+@media (pointer: coarse) {
+  .swatch {
+    width: 27px;
+    height: 27px;
+  }
+  .qty button {
+    width: 28px;
+    height: 28px;
+  }
+  .size {
+    padding: 0.38rem 0.95rem;
+  }
 }
 
 /* ————— footer ————— */
