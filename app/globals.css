@@ -6,16 +6,16 @@
 ———————————————————————————————————————————————— */
 
 :root {
-  --cream: #faf3ea;
-  --cream-deep: #f2e6d8;
-  --paper: #fffdf8;
-  --cherry: #a61e2e;
-  --cherry-deep: #7c1220;
+  --cream: #fce5ef; /* brand pink — the ground the logo lives on */
+  --cream-deep: #f8cfe0;
+  --paper: #fffafc;
+  --cherry: #ac2217; /* sampled from the logotype */
+  --cherry-deep: #871a10;
   --wine: #6e1423;
-  --rose: #c58a8f;
-  --blush: #ecd2cc;
+  --rose: #e8a7bd;
+  --blush: #f8cfe0;
   --cocoa: #362419;
-  --cocoa-soft: #7a6357;
+  --cocoa-soft: #7a5a64;
   --navy: #28304a;
   --stitch-size: 12px;
 
@@ -96,29 +96,14 @@ button {
   );
 }
 
-/* ————— wordmark ————— */
+/* ————— wordmark (official logo via mask, colored by currentColor) ————— */
 
-.wordmark {
-  font-family: var(--display);
-  font-weight: 900;
-  font-variation-settings: "SOFT" 100, "opsz" 40;
-  letter-spacing: 0.01em;
-  display: inline-flex;
-  align-items: baseline;
-  color: var(--cherry);
-  line-height: 1;
-}
-
-.wordmark .flip {
+.logo-mask {
   display: inline-block;
-  transform: scaleX(-1);
-}
-
-.wordmark .heart {
-  font-size: 0.55em;
-  margin-inline: 0.12em;
-  transform: translateY(-0.32em);
-  display: inline-block;
+  aspect-ratio: 783 / 166;
+  background: currentColor;
+  -webkit-mask: url("/img/logo.png") center / contain no-repeat;
+  mask: url("/img/logo.png") center / contain no-repeat;
 }
 
 /* ————— nav ————— */
@@ -141,7 +126,13 @@ button {
 }
 
 .nav__brand {
-  font-size: 1.5rem;
+  height: 26px;
+  color: var(--cherry);
+  transition: color 0.2s ease;
+}
+
+.nav__brand:hover {
+  color: var(--cherry-deep);
 }
 
 .nav__links {
@@ -990,15 +981,10 @@ html.js .reveal:not(.is-in) {
 }
 
 .footer__mark {
-  font-size: clamp(3.4rem, 11vw, 8.5rem);
-  color: var(--cream);
   display: block;
-  text-align: center;
-  line-height: 1;
-}
-
-.footer__mark .heart {
-  color: var(--rose);
+  margin-inline: auto;
+  width: min(460px, 74vw);
+  color: var(--cream);
 }
 
 .footer__tag {
@@ -1267,6 +1253,11 @@ html.js .reveal:not(.is-in) {
   place-items: center;
   text-align: center;
   padding: 2rem;
+}
+
+.success .footer__mark {
+  color: var(--cherry);
+  margin-bottom: 1.6rem;
 }
 
 .success h1 {

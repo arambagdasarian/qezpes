@@ -54,11 +54,11 @@ export default function Story() {
               <defs>
                 <path id="circ" d="M 60,60 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0" />
               </defs>
-              <circle cx="60" cy="60" r="58" fill="none" stroke="#c58a8f" strokeWidth="1.5" strokeDasharray="6 5" />
-              <text fill="#ecd2cc" fontSize="13.5" fontWeight="700" letterSpacing="2.5">
+              <circle cx="60" cy="60" r="58" fill="none" stroke="#e8a7bd" strokeWidth="1.5" strokeDasharray="6 5" />
+              <text fill="#fce5ef" fontSize="13.5" fontWeight="700" letterSpacing="2.5">
                 <textPath href="#circ">made in armenia · with self-love ·</textPath>
               </text>
-              <text x="60" y="67" textAnchor="middle" fontSize="20" fill="#c58a8f">♥</text>
+              <text x="60" y="67" textAnchor="middle" fontSize="20" fill="#e8a7bd">♥</text>
             </svg>
           </div>
         </Reveal>
