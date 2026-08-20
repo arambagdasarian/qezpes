@@ -1,7 +1,7 @@
 # QezPes · Քեզ Պես — brand site & shop
 
 A dynamic site for [@qezpes](https://www.instagram.com/qezpes/): hero reels from the brand's
-Instagram, the brand story, and a shop with color/size selection and Stripe checkout.
+Instagram, the brand story, and a shop with color/size selection (card payments via Ameriabank vPOS coming soon; orders currently via Instagram DM).
 
 Built with Next.js (App Router) + TypeScript. All photos and videos in `public/` are QezPes's
 own Instagram media.
@@ -13,38 +13,27 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
-## Enable payments (Stripe)
+## Payments
 
-1. Create a [Stripe](https://dashboard.stripe.com) account (test mode is fine to start).
-2. Copy `.env.example` to `.env.local` and paste your secret key:
-   ```
-   STRIPE_SECRET_KEY=sk_test_...
-   ```
-3. Restart `npm run dev`. Checkout now opens a real Stripe Checkout page
-   (test card: `4242 4242 4242 4242`, any future date, any CVC).
+Card payments via **Ameriabank vPOS** are pending the bank's approval of the acquiring
+agreement. Until then, the cart's "Order via Instagram DM" button copies the order summary
+to the clipboard and opens the [@qezpes](https://www.instagram.com/qezpes/) chat.
 
-Until the key is set, the checkout button shows a friendly notice and points buyers to
-Instagram DM — the rest of the site works fully.
-
-Charges are made in **USD** using the prices in `lib/products.ts` (prices are always read
-server-side in `app/api/checkout/route.ts`, never trusted from the browser). Shipping
-addresses are collected for the US and Armenia.
+(The earlier Stripe integration was removed on 2026-08-21 — it lives in git history if ever
+needed again.)
 
 ## Where things live
 
 - `lib/products.ts` — the catalog: names, Armenian lines, prices (AMD + USD cents), colorways
   and which image each colorway shows. Edit this to add drops.
 - `components/` — page sections (hero reels, marquee, story, shop, kids, cart drawer).
-- `public/img`, `public/video` — compressed media pulled from the brand's Instagram.
-- `app/api/checkout/route.ts` — creates the Stripe Checkout session.
+- `public/img`, `public/video` — compressed media pulled from the brand's Instagram, plus the
+  official logo assets (`logo.png`, `logo-stacked.png`).
 
 ## Deploy
 
-Any Node host works; Vercel is the one-click option:
+Production runs on Vercel at [qezpes.com](https://qezpes.com). Deploy with:
 
 ```bash
-npx vercel
+npx vercel deploy --prod
 ```
-
-Set `STRIPE_SECRET_KEY` (and optionally `NEXT_PUBLIC_SITE_URL=https://yourdomain`) in the
-host's environment settings.

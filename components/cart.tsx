@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import { AMD, USD, PRODUCTS } from "@/lib/products";
-import { asset, IS_STATIC } from "@/lib/asset";
+import { asset } from "@/lib/asset";
 
 export type CartLine = {
   productId: string;
@@ -102,8 +102,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 export function CartDrawer() {
   const { lines, open, setOpen, setQty, remove, toast } = useCart();
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -123,30 +122,18 @@ export function CartDrawer() {
   const totalAmd = detailed.reduce((s, l) => s + l.product.priceAmd * l.qty, 0);
   const totalUsd = detailed.reduce((s, l) => s + l.product.priceUsd * l.qty, 0);
 
-  const checkout = async () => {
-    if (IS_STATIC) {
-      setError(
-        "This is the preview build — checkout goes live once Stripe is connected. For now, orders work via Instagram DM @qezpes."
-      );
-      return;
-    }
-    setBusy(true);
-    setError(null);
+  // Card payments arrive with the Ameriabank vPOS integration; until then,
+  // orders go through Instagram DM with the bag contents pre-copied.
+  const orderViaDM = async () => {
+    const summary = detailed
+      .map((l) => `• ${l.product.name} — ${l.color.name} / ${l.size} × ${l.qty}`)
+      .join("\n");
+    const text = `Hi QezPes 🩷 I'd like to order:\n${summary}\nTotal: ${AMD(totalAmd)} (${USD(totalUsd)})`;
     try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: lines }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.url) {
-        throw new Error(data.error || "Checkout could not start. Try again in a moment.");
-      }
-      window.location.href = data.url;
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Checkout could not start.");
-      setBusy(false);
-    }
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+    } catch {}
+    window.open("https://ig.me/m/qezpes", "_blank", "noopener");
   };
 
   return (
@@ -201,31 +188,37 @@ export function CartDrawer() {
         </div>
 
         <div className="cart__foot">
-          {error && <div className="cart__error">{error}</div>}
+          {copied && (
+            <div className="cart__error" role="status">
+              Your order summary is copied 💌 — paste it in the Instagram chat and we&rsquo;ll
+              take it from there.
+            </div>
+          )}
           <div className="cart__total">
             <span>
               Total
-              <small>{AMD(totalAmd)} in Armenia</small>
+              <small>{USD(totalUsd)} in the US</small>
             </span>
-            <span>{USD(totalUsd)}</span>
+            <span>{AMD(totalAmd)}</span>
           </div>
           <button
             className="btn btn--primary cart__checkout"
-            onClick={checkout}
-            disabled={busy || detailed.length === 0}
+            onClick={orderViaDM}
+            disabled={detailed.length === 0}
           >
-            {busy ? "Opening checkout…" : "Checkout with Stripe"}
+            Order via Instagram DM
           </button>
           <p className="cart__hint">
-            Charged in USD · in Armenia you can also order via{" "}
+            Card payments are coming soon — for now we confirm every order personally on{" "}
             <a
               href="https://www.instagram.com/qezpes/"
               target="_blank"
               rel="noreferrer"
               style={{ textDecoration: "underline" }}
             >
-              Instagram DM
-            </a>
+              @qezpes
+            </a>{" "}
+            🎀
           </p>
         </div>
       </aside>
