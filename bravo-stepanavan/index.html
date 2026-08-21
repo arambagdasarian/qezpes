@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ԲՐԱՎՈ · Բենզալցակայան Ստեփանավանում — BRAVO Gas Station, Stepanavan</title>
+  <meta name="description" content="ԲՐԱՎՈ բենզալցակայան Ստեփանավանում. բենզին, դիզվառելիք, գազ, մինի-մարկետ։ BRAVO fuel station in Stepanavan, Lori, Armenia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e32219'/><text x='50' y='72' font-size='64' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>B</text></svg>">
+  <style>
+    :root {
+      --red: #e32219;
+      --red-dark: #b71a13;
+      --ink: #16181d;
+      --ink-2: #22252c;
+      --paper: #f7f6f3;
+      --muted: #6b7078;
+      --amber: #ffb400;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans Armenian", "Inter", system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    /* ---- language toggle: body.lang-en shows .en, hides .hy ---- */
+    .en { display: none; }
+    body.lang-en .en { display: revert; }
+    body.lang-en .hy { display: none; }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---- nav ---- */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(22, 24, 29, .92);
+      backdrop-filter: blur(8px);
+      color: #fff;
+    }
+    .nav { display: flex; align-items: center; gap: 24px; padding: 14px 0; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.25rem; letter-spacing: .04em; color: #fff; text-decoration: none; }
+    .logo-mark {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: var(--red); display: grid; place-items: center;
+      font-size: 1.2rem; font-weight: 800; color: #fff;
+      box-shadow: 0 2px 10px rgba(227, 34, 25, .45);
+    }
+    nav.links { margin-left: auto; display: flex; gap: 20px; }
+    nav.links a { color: #cfd2d8; text-decoration: none; font-size: .92rem; font-weight: 600; }
+    nav.links a:hover { color: #fff; }
+    .lang-btn {
+      border: 1px solid #4a4e57; background: none; color: #fff;
+      border-radius: 999px; padding: 6px 14px; font: inherit; font-size: .85rem;
+      font-weight: 600; cursor: pointer;
+    }
+    .lang-btn:hover { border-color: #fff; }
+
+    /* ---- hero ---- */
+    .hero {
+      background:
+        radial-gradient(1000px 500px at 80% -10%, rgba(227, 34, 25, .35), transparent 60%),
+        radial-gradient(700px 400px at 10% 110%, rgba(255, 180, 0, .18), transparent 60%),
+        linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%);
+      color: #fff; text-align: center;
+      padding: 96px 20px 110px;
+      position: relative; overflow: hidden;
+    }
+    .hero .kicker {
+      display: inline-block; font-size: .85rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+    }
+    .hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); font-weight: 800; letter-spacing: .02em; line-height: 1.1; }
+    .hero h1 .accent { color: var(--red); }
+    .hero p.sub { max-width: 640px; margin: 22px auto 0; color: #c9ccd3; font-size: 1.1rem; }
+    .hero .cta-row { margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 13px 28px; border-radius: 999px;
+      font-weight: 700; font-size: .98rem; text-decoration: none; transition: transform .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-red { background: var(--red); color: #fff; box-shadow: 0 6px 24px rgba(227, 34, 25, .4); }
+    .btn-ghost { border: 1.5px solid #565b64; color: #fff; }
+    .hero .stripe {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 10px;
+      background: repeating-linear-gradient(-45deg, var(--red) 0 26px, #fff 26px 40px, var(--ink) 40px 66px);
+      opacity: .9;
+    }
+
+    /* ---- sections ---- */
+    section { padding: 74px 0; }
+    .sec-title { font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 800; margin-bottom: 8px; }
+    .sec-sub { color: var(--muted); margin-bottom: 40px; max-width: 620px; }
+    .sec-title .tick { color: var(--red); }
+
+    /* fuels */
+    .fuel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .fuel-card {
+      background: #fff; border-radius: 16px; padding: 26px 24px;
+      border: 1px solid #e7e5e0; box-shadow: 0 2px 10px rgba(20, 22, 26, .04);
+    }
+    .fuel-card .tag {
+      display: inline-grid; place-items: center; min-width: 58px; height: 34px; padding: 0 12px;
+      border-radius: 8px; font-weight: 800; font-size: 1rem; color: #fff; margin-bottom: 16px;
+    }
+    .t-92 { background: #2e7d32; } .t-95 { background: var(--red); }
+    .t-diesel { background: #37474f; } .t-gas { background: #1565c0; }
+    .fuel-card h3 { font-size: 1.12rem; margin-bottom: 6px; }
+    .fuel-card p { color: var(--muted); font-size: .93rem; }
+    .price-note {
+      margin-top: 28px; padding: 16px 20px; border-left: 4px solid var(--amber);
+      background: #fff8e8; border-radius: 0 12px 12px 0; font-size: .95rem;
+    }
+
+    /* services */
+    .services { background: var(--ink); color: #fff; }
+    .services .sec-sub { color: #a7abb3; }
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+    .svc {
+      background: var(--ink-2); border: 1px solid #32363e; border-radius: 16px; padding: 26px 24px;
+    }
+    .svc .ico { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+    .svc h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .svc p { color: #a7abb3; font-size: .92rem; }
+
+    /* location */
+    .loc-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: start; }
+    @media (max-width: 800px) { .loc-grid { grid-template-columns: 1fr; } }
+    .loc-card { background: #fff; border: 1px solid #e7e5e0; border-radius: 16px; padding: 28px; }
+    .loc-card dl div { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px dashed #e2e0da; }
+    .loc-card dl div:last-child { border-bottom: none; }
+    .loc-card dt { min-width: 110px; font-weight: 700; font-size: .92rem; }
+    .loc-card dd { color: var(--muted); font-size: .95rem; }
+    .map-frame {
+      width: 100%; height: 380px; border: 0; border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(20, 22, 26, .08); display: block;
+    }
+    .open-247 {
+      display: inline-flex; align-items: center; gap: 8px; background: #e8f5e9; color: #1d7a24;
+      border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: .85rem; margin-bottom: 18px;
+    }
+    .open-247 .dot { width: 8px; height: 8px; border-radius: 50%; background: #2fae38; }
+
+    /* footer */
+    footer { background: var(--ink); color: #9599a1; padding: 34px 0; font-size: .88rem; }
+    .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+    footer .logo { font-size: 1rem; }
+    footer .logo-mark { width: 28px; height: 28px; font-size: .95rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#">
+      <span class="logo-mark">B</span>
+      <span><span class="hy">ԲՐԱՎՈ</span><span class="en">BRAVO</span></span>
+    </a>
+    <nav class="links">
+      <a href="#fuel"><span class="hy">Վառելիք</span><span class="en">Fuel</span></a>
+      <a href="#services"><span class="hy">Ծառայություններ</span><span class="en">Services</span></a>
+      <a href="#location"><span class="hy">Գտնվելու վայրը</span><span class="en">Location</span></a>
+      <a href="#contact"><span class="hy">Կապ</span><span class="en">Contact</span></a>
+    </nav>
+    <button class="lang-btn" id="langToggle" aria-label="Switch language">
+      <span class="hy">EN</span><span class="en">ՀԱՅ</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="kicker">
+    <span class="hy">Ստեփանավան · Լոռու մարզ</span>
+    <span class="en">Stepanavan · Lori Province, Armenia</span>
+  </span>
+  <h1>
+    <span class="hy">ԲՐԱՎՈ<span class="accent">.</span><br>Ձեր ճանապարհի ընկերը</span>
+    <span class="en">BRAVO<span class="accent">.</span><br>Your companion on the road</span>
+  </h1>
+  <p class="sub">
+    <span class="hy">Որակյալ վառելիք, արագ սպասարկում և ջերմ ընդունելություն Ստեփանավանում՝ Երևան–Թբիլիսի ճանապարհին։</span>
+    <span class="en">Quality fuel, quick service and a warm welcome in Stepanavan, on the road between Yerevan and Tbilisi.</span>
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-red" href="#location">
+      <span class="hy">Ինչպես հասնել</span><span class="en">Get directions</span>
+    </a>
+    <a class="btn btn-ghost" href="#fuel">
+      <span class="hy">Վառելիքի տեսակներ</span><span class="en">Our fuel</span>
+    </a>
+  </div>
+  <div class="stripe" aria-hidden="true"></div>
+</section>
+
+<section id="fuel">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tick">/</span> <span class="hy">Վառելիք</span><span class="en">Fuel</span></h2>
+    <p class="sec-sub">
+      <span class="hy">Ստուգված մատակարարներ և մշտապես թարմ վառելիք՝ ձեր մեքենայի անվտանգության համար։</span>
+      <span class="en">Trusted suppliers and consistently fresh fuel to keep your engine safe.</span>
+    </p>
+    <div class="fuel-grid">
+      <div class="fuel-card">
+        <span class="tag t-92">92</span>
+        <h3><span class="hy">Ռեգուլար ԱԻ-92</span><span class="en">Regular AI-92</span></h3>
+        <p><span class="hy">Ամենօրյա վարելու համար՝ մատչելի գնով։</span><span class="en">For everyday driving at an accessible price.</span></p>
+      </div>
+      <div class="fuel-card">
+        <span class="tag t-95">95</span>
+        <h3><span class="hy">Պրեմիում ԱԻ-95</span><span class="en">Premium AI-95</span></h3>
+        <p><span class="hy">Բարձր օկտանային՝ ժամանակակից շարժիչների համար։</span><span class="en">High octane for modern engines.</span></p>
+      </div>
+      <div class="fuel-card">
+        <span class="tag t-diesel">ԴՏ</span>
+        <h3><span class="hy">Դիզվառելիք</span><span class="en">Diesel</span></h3>
+        <p><span class="hy">Բեռնատարների, ամենագնացների և գյուղտեխնիկայի համար։</span><span class="en">For trucks, SUVs and farm machinery.</span></p>
+      </div>
+      <div class="fuel-card">
+        <span class="tag t-gas">ԳԱԶ</span>
+        <h3><span class="hy">Հեղուկ գազ</span><span class="en">LPG / Autogas</span></h3>
+        <p><span class="hy">Խնայողական այլընտրանք՝ գազով աշխատող մեքենաների համար։</span><span class="en">The economical choice for gas-powered cars.</span></p>
+      </div>
+    </div>
+    <p class="price-note">
+      <span class="hy"><strong>Գները</strong> թարմացվում են ամեն օր և փակցված են կայանի ցուցատախտակին։ Զանգահարեք՝ օրվա գները ճշտելու համար։</span>
+      <span class="en"><strong>Prices</strong> are updated daily and posted on the station's board. Call us to check today's prices.</span>
+    </p>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tick">/</span> <span class="hy">Ծառայություններ</span><span class="en">Services</span></h2>
+    <p class="sec-sub">
+      <span class="hy">Ավելին, քան պարզապես լցակայան։</span>
+      <span class="en">More than just a fill-up.</span>
+    </p>
+    <div class="svc-grid">
+      <div class="svc">
+        <span class="ico">⛽</span>
+        <h3><span class="hy">Արագ լիցքավորում</span><span class="en">Fast refuelling</span></h3>
+        <p><span class="hy">Սպասարկող անձնակազմ, որ լիցքավորում է ձեր փոխարեն։</span><span class="en">Attendant service — we pump it for you.</span></p>
+      </div>
+      <div class="svc">
+        <span class="ico">🛒</span>
+        <h3><span class="hy">Մինի-մարկետ</span><span class="en">Mini-market</span></h3>
+        <p><span class="hy">Սուրճ, ըմպելիքներ, թեթև ուտեստներ և ճանապարհի անհրաժեշտ ամեն ինչ։</span><span class="en">Coffee, drinks, snacks and road-trip essentials.</span></p>
+      </div>
+      <div class="svc">
+        <span class="ico">🚗</span>
+        <h3><span class="hy">Անվադողերի փչում</span><span class="en">Tire air & basics</span></h3>
+        <p><span class="hy">Անվճար օդ անվադողերի համար և ապակիների մաքրում։</span><span class="en">Free tire air and windshield cleaning.</span></p>
+      </div>
+      <div class="svc">
+        <span class="ico">💳</span>
+        <h3><span class="hy">Անկանխիկ վճարում</span><span class="en">Card payments</span></h3>
+        <p><span class="hy">Ընդունում ենք քարտեր և կանխիկ։</span><span class="en">We accept cards and cash.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tick">/</span> <span class="hy">Գտնվելու վայրը</span><span class="en">Find us</span></h2>
+    <p class="sec-sub">
+      <span class="hy">Ստեփանավան, Լոռու մարզ — Երևանից 139 կմ հյուսիս, Վրաստանի սահմանի մոտ։</span>
+      <span class="en">Stepanavan, Lori Province — 139 km north of Yerevan, near the Georgian border.</span>
+    </p>
+    <div class="loc-grid">
+      <div class="loc-card" id="contact">
+        <span class="open-247"><span class="dot"></span><span class="hy">Բաց է ամեն օր</span><span class="en">Open daily</span></span>
+        <dl>
+          <div>
+            <dt><span class="hy">Հասցե</span><span class="en">Address</span></dt>
+            <dd><span class="hy">Ստեփանավան, Լոռու մարզ, Հայաստան</span><span class="en">Stepanavan, Lori Province, Armenia</span></dd>
+          </div>
+          <div>
+            <dt><span class="hy">Հեռախոս</span><span class="en">Phone</span></dt>
+            <dd><a href="tel:+374XXXXXXXX" style="color:var(--red);font-weight:700;text-decoration:none">+374 XX XX XX XX</a></dd>
+          </div>
+          <div>
+            <dt><span class="hy">Ժամեր</span><span class="en">Hours</span></dt>
+            <dd><span class="hy">Ամեն օր, 08:00 – 24:00</span><span class="en">Daily, 08:00 – 24:00</span></dd>
+          </div>
+        </dl>
+      </div>
+      <iframe class="map-frame" title="Map — Stepanavan, Armenia" loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=44.3550%2C40.9950%2C44.4150%2C41.0260&amp;layer=mapnik&amp;marker=41.0106%2C44.3853">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#">
+      <span class="logo-mark">B</span>
+      <span><span class="hy">ԲՐԱՎՈ</span><span class="en">BRAVO</span></span>
+    </a>
+    <span>
+      <span class="hy">© <span id="yr">2026</span> ԲՐԱՎՈ բենզալցակայան · Ստեփանավան</span>
+      <span class="en">© <span id="yr2">2026</span> BRAVO Gas Station · Stepanavan</span>
+    </span>
+  </div>
+</footer>
+
+<script>
+  const KEY = "bravo-lang";
+  const btn = document.getElementById("langToggle");
+  function setLang(lang) {
+    document.body.classList.toggle("lang-en", lang === "en");
+    document.documentElement.lang = lang;
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+  }
+  btn.addEventListener("click", () =>
+    setLang(document.body.classList.contains("lang-en") ? "hy" : "en"));
+  try { setLang(localStorage.getItem(KEY) || "hy"); } catch (e) {}
+  const y = new Date().getFullYear();
+  document.getElementById("yr").textContent = y;
+  document.getElementById("yr2").textContent = y;
+</script>
+
+</body>
+</html>
